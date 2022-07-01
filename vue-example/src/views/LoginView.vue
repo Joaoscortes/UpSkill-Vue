@@ -16,13 +16,15 @@
   </form>
 </template>
 
-<script>
-import {defineComponent} from 'vue'
+<script lang="ts">
+import { defineComponent } from 'vue';
+import userApi from "@/api/User"
+import { mapStores } from 'pinia';
+import { useAuthStore } from '@/stores/auth'
 
 export default defineComponent({
   data() {
     return {
-      currentUser: {},
       loginForm: {
         email: '',
         password: ''
@@ -31,12 +33,18 @@ export default defineComponent({
   },
   methods: {
     login() {
-      if (this.loginForm.email && this.loginForm.password) {
-        this.currentUser = this.loginForm;
-        console.log(this.currentUser);
-        this.$router.push('/home')
-      }
+      userApi.login(this.loginForm)
+        .then((response) => {
+          this.authStore.setUser(response.data);
+          this.$router.push('/about')
+        })
+        .catch((error) => {
+          console.log(error);
+        })
     }
+  },
+  computed: {
+    ...mapStores(useAuthStore)
   }
 })
 
