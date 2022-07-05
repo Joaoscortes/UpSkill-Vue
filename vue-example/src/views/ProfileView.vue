@@ -1,6 +1,8 @@
 <template>
-  <h1>Profile</h1>
-  <button type="button" class="btn btn-danger" @click="logout()">Logout</button>
+  <ViewHeader
+    title="Profile"
+    :actions="['Logout']"
+    @action="logout()"></ViewHeader>
   <form @submit.prevent="update()">
     <div class="mb-3">
       <label for="inputName" class="form-label">Name</label>
@@ -28,8 +30,12 @@ import { useAuthStore } from "@/stores/auth";
 import { mapStores } from "pinia";
 import { defineComponent } from "vue";
 import userApi from "@/api/User"
+import ViewHeader from "@/components/ViewHeader.vue"
 
 export default defineComponent({
+  components: {
+    ViewHeader
+  },
   data() {
     return {
       profile: {} as IUser
