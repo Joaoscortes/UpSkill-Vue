@@ -15,6 +15,10 @@ export const useAuthStore = defineStore({
     setUser(value: IUser) {
       this.user = value;
       this.authenticated = true;
+    },
+    logout() {
+      this.user = {} as IUser;
+      this.authenticated = false;
     }
   }
 })

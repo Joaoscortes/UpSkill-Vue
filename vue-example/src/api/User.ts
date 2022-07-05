@@ -6,5 +6,9 @@ export default {
 
   login(user: Partial<IUser>) {
     return axios.post(`${this.apiUrl}/User/Login`, user)
+  },
+
+  update(user: IUser) {
+    return axios.put(`${this.apiUrl}/User/Update`, user)
   }
 }

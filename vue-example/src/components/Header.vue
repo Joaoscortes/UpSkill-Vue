@@ -17,7 +17,7 @@
         </ul>
         <ul class="navbar-nav ms-auto mb-lg-0">
           <li class="nav-item">
-            <span v-if="authStore.isAuthenticated">{{ authStore.getUser.name}}</span>
+            <router-link v-if="authStore.isAuthenticated" class="nav-link" to="/profile">{{ authStore.getUser.name}}</router-link>
             <router-link v-else class="nav-link" to="/login">Login</router-link>
           </li>
         </ul>

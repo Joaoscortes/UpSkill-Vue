@@ -3,6 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue';
 import NotesView from '@/views/NotesView.vue';
 import { useAuthStore } from '@/stores/auth';
+import ProfileView from '@/views/ProfileView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,12 @@ const router = createRouter({
       path: '/notes',
       name: 'notes',
       component: NotesView,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: ProfileView,
       meta: { requiresAuth: true }
     },
     {
